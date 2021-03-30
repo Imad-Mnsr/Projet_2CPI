@@ -22,7 +22,7 @@ exports.postSignup = async(req, res) => {
             })
         } else {
             const userExist = await User.find({$or:[ {'email': email.toLowerCase()}, {'username': username.toLowerCase()}]})
-            if (userExist) {
+            if (userExist && userExist.length>0) {
                 res.render('auth/register', {
                     pageTitle: 'Signup',
                     path: '/register',
